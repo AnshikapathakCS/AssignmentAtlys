@@ -97,7 +97,7 @@ extension View {
         self.modifier(TextStyleModifier(
             size: 12,
             weight: .bold,
-            color: .primary
+            color: nil
         ))
     }
     
@@ -118,11 +118,11 @@ extension View {
 private struct TextStyleModifier: ViewModifier {
     let size: CGFloat
     let weight: Font.Weight
-    let color: Color
+    let color: Color?
     
     func body(content: Content) -> some View {
         content
             .font(.system(size: size, weight: weight))
-            .foregroundColor(color)
+            .foregroundColor(color ?? .primary)
     }
 }

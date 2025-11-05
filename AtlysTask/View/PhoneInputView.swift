@@ -7,100 +7,66 @@
 
 import SwiftUI
 
-// MARK: - Phone Input View
 struct PhoneInputView: View {
-    // MARK: - Properties
-    @Binding var phoneNumber: String
-    @Binding var isValid: Bool
+    // MARK: - Static UI Properties
     let countryFlag: String
     let countryCode: String
     let placeholder: String
-    let onContinue: () -> Void
-    
-    @FocusState private var isFocused: Bool
-    
-    // MARK: - Initializer
-    init(
-        phoneNumber: Binding<String>,
-        isValid: Binding<Bool> = .constant(true),
-        countryFlag: String = AppConstants.Text.indiaFlag,
-        countryCode: String = AppConstants.Text.countryCode,
-        placeholder: String = AppConstants.Text.enterMobileNumber,
-        onContinue: @escaping () -> Void
-    ) {
-        self._phoneNumber = phoneNumber
-        self._isValid = isValid
-        self.countryFlag = countryFlag
-        self.countryCode = countryCode
-        self.placeholder = placeholder
-        self.onContinue = onContinue
-    }
-    
-    // MARK: - Body
+
     var body: some View {
         VStack(spacing: 16) {
             phoneInputField
             continueButton
         }
     }
-}
 
-// MARK: - View Components
-extension PhoneInputView {
-    // MARK: - Phone Input Field
+    // MARK: - Phone Input Field (Design Only)
     private var phoneInputField: some View {
         HStack(spacing: 0) {
             countryCodeView
-            
+
             Divider()
                 .frame(height: 20)
                 .padding(.trailing, 10)
-            
-            TextField(placeholder, text: $phoneNumber)
+
+            Text(placeholder)
                 .bodyRegular()
-                .keyboardType(.numberPad)
-                .focused($isFocused)
+                .foregroundColor(.secondary)
                 .padding(.trailing, 14)
-                .onChange(of: phoneNumber) { newValue in
-                    if newValue.count > 10 {
-                        phoneNumber = String(newValue.prefix(10))
-                    }
-                }
+                .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .focusedInputStyle(isFocused: isFocused)
+        .focusedInputStyle(isFocused: false)
     }
-    
+
     // MARK: - Country Code
     private var countryCodeView: some View {
         HStack(spacing: 6) {
             Text(countryFlag)
                 .bodyRegular()
-            
+
             Text(countryCode)
                 .bodySemibold()
         }
         .padding(.horizontal, 14)
     }
-    
-    // MARK: - Continue Button
+
+    // MARK: - Continue Button (Design Only)
     private var continueButton: some View {
-        Button(action: onContinue) {
+        Button(action: {}) {
             Text(AppConstants.Text.continueButton)
                 .buttonPrimary()
         }
-        .primaryGradient(isEnabled: isValid)
-        .disabled(!isValid)
+        .primaryGradient(isEnabled: true)
     }
 }
 
 // MARK: - Preview
 #Preview {
     PhoneInputView(
-        phoneNumber: .constant(""),
-        onContinue: {
-            print("Continue tapped")
-        }
+        countryFlag: AppConstants.Text.indiaFlag,
+        countryCode: AppConstants.Text.countryCode,
+        placeholder: AppConstants.Text.enterMobileNumber
     )
     .padding()
+    .background(Color(.systemGroupedBackground))
 }
-

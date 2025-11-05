@@ -47,8 +47,8 @@ extension AtlysLoginView {
                 )
             
             Text(AppConstants.Text.visasOnTime)
+                .foregroundColor(Color(AppConstants.Colors.purpleGradient[1]))
                 .captionBold()
-                .foregroundColor(Color(red: 0.48, green: 0.38, blue: 0.88))
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 6)
@@ -96,11 +96,7 @@ extension AtlysLoginView {
         VStack(spacing: 16) {
             loginTitleView
             
-            PhoneInputView(
-                phoneNumber: $viewModel.phoneNumber,
-                isValid: $viewModel.isPhoneNumberValid,
-                onContinue: {}
-            )
+            PhoneInputView(countryFlag: AppConstants.Text.indiaFlag, countryCode: AppConstants.Text.countryCode, placeholder: AppConstants.Text.enterMobileNumber)
             
             orDivider
                 .padding(.bottom, 4)

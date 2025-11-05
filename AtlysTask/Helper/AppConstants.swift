@@ -85,22 +85,6 @@ struct AppConstants {
         static var purpleGradient: [Color] {
             [purpleGradientStart, purpleGradientEnd]
         }
-        
-        // Very light purple gradient colors (for input field backgrounds)
-        static let lightPurpleGradientStart = Color(red: 0.95, green: 0.92, blue: 0.99)
-        static let lightPurpleGradientEnd = Color(red: 0.88, green: 0.82, blue: 0.98)
-        
-        static var lightPurpleGradient: [Color] {
-            [lightPurpleGradientStart, lightPurpleGradientEnd]
-        }
-        
-        // Disabled button purple gradient colors
-        static let disabledPurpleGradientStart = Color(red: 0.85, green: 0.80, blue: 0.95)
-        static let disabledPurpleGradientEnd = Color(red: 0.75, green: 0.68, blue: 0.90)
-        
-        static var disabledPurpleGradient: [Color] {
-            [disabledPurpleGradientStart, disabledPurpleGradientEnd]
-        }
     }
     
     // MARK: - Destination Data
